@@ -133,7 +133,7 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
-                        <Button sx={{ backgroundColor: '#212AE3', color: '#FAFAFA', textTransform: 'initial', fontFamily: 'Inter, sans-serif' }}> Watch Demo </Button>
+                        <Button sx={{ backgroundColor: '#212AE3', color: '#FAFAFA', textTransform: 'initial', fontFamily: 'Inter, sans-serif', fontSize: {xs: '10px', sm: '15px', md: '18px'} }}> Watch Demo </Button>
                     </Box>
                 </Toolbar>
             </Container>
