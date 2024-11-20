@@ -6,11 +6,11 @@ import {
     IconButton,
     Typography,
     Menu,
-    MenuIcon,
     MenuItem,
     Container,
     Button,
 } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import '@fontsource/inter';
 
 const pages = ['Features', 'How it Works', 'Pricing'];
