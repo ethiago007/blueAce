@@ -1,3 +1,21 @@
 body {
   background-color: #030303;
 }
+
+span.inter {
+  position: relative;
+  display: inline-block;
+}
+
+span.inter::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 0.3em;
+  background: #212AE3;
+  z-index: -1;
+  transform: translateX(0%);
+  border-radius: 2px;
+}
