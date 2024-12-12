@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import ResponsiveAppBar from './component/navbar'
 import TextBig from './component/text';
-import YoutubeEmbed from './component/video';
+import InteractRobot from './component/midrobot';
+import CardFeatures from './component/features';
+import VerticalStepperWithImage from './component/how';
 import './App.css'
 import '@fontsource/inter';
 
@@ -15,7 +17,9 @@ function App() {
       <br></br>
       <TextBig />
       <br></br>
-      <YoutubeEmbed embedId="XQUJAQ_7tHc" />
+      <InteractRobot />
+      <CardFeatures />
+      <VerticalStepperWithImage />
     </>
   )
 }
