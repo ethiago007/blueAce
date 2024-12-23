@@ -1,81 +1,188 @@
-import React, { useState } from 'react';
-import {
-    Stepper,
-    Step,
-    StepLabel,
-    Button,
-    Grid2,
-    Box
-} from '@mui/material';
+import React, { useState } from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { motion } from "framer-motion";
+import "@fontsource/inter";
 
-const steps = ['Step 1', 'Step 2', 'Step 3'];
-const images = [
-    'https://via.placeholder.com/300?text=Image+1',
-    'https://via.placeholder.com/300?text=Image+2',
-    'https://via.placeholder.com/300?text=Image+3',
+const steps = [
+  {
+    number: "1",
+    title: "SIGN UP",
+    description:
+      "Click on get started to signup using either email or your Google account. Fill in your details and select the type of interview and preferred industry or organization.",
+    image: "sign up.png",
+  },
+  {
+    number: "2",
+    title: "MOCK INTERVIEW",
+    description:
+      "Conduct your mock interview by engaging in a live, simulated interview with InteractAI. Respond to questions and chat freely as you would in an interview.",
+    image: "interview.jpg",
+  },
+  {
+    number: "3",
+    title: "REVIEW AND ASSESSMENT",
+    description:
+      "Review your interview performance including response quality, time management, pacing, and tone analysis.",
+    image: "assessment.jpg",
+  },
 ];
 
-const VerticalStepperWithImage = () => {
-    const [activeStep, setActiveStep] = useState(0);
+const VerticalStepperLayout = () => {
+  const [activeStep, setActiveStep] = useState(0);
 
-    const handleNext = () => setActiveStep((prev) => Math.min(prev + 1, steps.length - 1));
-    const handleBack = () => setActiveStep((prev) => Math.max(prev - 1, 0));
+  const handleNext = () => {
+    setActiveStep((prev) => Math.min(prev + 1, steps.length - 1));
+  };
 
-    return (
-        <>
-        <Box sx={{backgroundColor: '#FFFFFF'}}>
+  const handleBack = () => {
+    setActiveStep((prev) => Math.max(prev - 1, 0));
+  };
+
+  return (
+    <>
+      <Box
+        sx={{
+          backgroundColor: "#FFFFFF",
+          fontFamily: "Inter, sans-serif",
+          padding: { md: "100px", xs: "none", sm: "100px" },
+        }}
+      >
         <br /><br />
-        <Grid2 container spacing={2} alignItems="center" >
-            {/* Stepper on the Left */}
-            <Grid2 item xs={12} md={6}>
-                <Stepper activeStep={activeStep} orientation="vertical">
-                    {steps.map((label, index) => (
-                        <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
-                        </Step>
-                    ))}
-                </Stepper>
-                <Box mt={2}>
-                    <Button
-                        disabled={activeStep === 0}
-                        onClick={handleBack}
-                        variant="contained"
-                        style={{ marginRight: '10px' }}
-                    >
-                        Back
-                    </Button>
-                    <Button
-                        disabled={activeStep === steps.length - 1}
-                        onClick={handleNext}
-                        variant="contained"
-                    >
-                        Next
-                    </Button>
-                </Box>
-            </Grid2>
-
-            {/* Image on the Right */}
-            <Grid2 item xs={12} md={6}>
+        <Typography
+          sx={{ display: "flex", justifyContent: "center", fontSize: "20px" }}
+        >
+          How it works
+        </Typography>
+        <br />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: { xs: "flex-start", md: "center" },
+            gap: 4,
+            p: 4,
+            backgroundColor: "#FFFFFF",
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
+            {steps.map((step, index) => (
+              <Box
+                key={index}
+                sx={{ display: "flex", gap: {md: 8, xs: 6} }}
+                component={motion.div}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
                 <Box
-                    sx={{
-                        width: '100%',
-                        height: 'auto',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
                 >
-                    <img
-                        src={images[activeStep]}
-                        alt={`Step ${activeStep + 1}`}
-                        style={{ maxWidth: '100%', borderRadius: '8px' }}
-                    />
+                  
+                 
+                  <Box
+                    sx={{
+                      width: { md: "90px", xs: "50px" },
+                      height: { md: "90px", xs: "50px" },
+                      borderRadius: "50%",
+                      backgroundColor:
+                        index === activeStep || index < activeStep
+                          ? "#212AE3"
+                          : "#888EFF",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "#fff",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    
+                    {step.number}
+                  </Box>
+                  {index < steps.length - 1 && (
+                    <Box
+                      sx={{
+                        width: "2px",
+                        height: { md: "80px", xs: "120px" },
+                        backgroundColor:
+                          index < activeStep ? "#212AE3" : "#888EFF",
+                        marginTop: "4px",
+                      }}
+                    ></Box>
+                  )}
                 </Box>
-            </Grid2>
-        </Grid2>
+
+                <Box >
+                
+                  <Typography
+                    sx={{
+                      color: "#212AE3",
+                      fontSize: {md: "17px", xs: "15px"},
+                      fontWeight: 500,
+                    }}
+                  >
+                    {step.title}
+                  </Typography>
+                  
+                  <Typography variant="body2">{step.description}</Typography>
+                </Box>
+                
+              </Box>
+            ))}
+
+            <Box sx={{ mt: 3 }}>
+              <Button
+                disabled={activeStep === 0}
+                onClick={handleBack}
+                variant="contained"
+                sx={{ marginRight: 1 }}
+              >
+                Back
+              </Button>
+              &nbsp;
+              <Button
+                disabled={activeStep === steps.length - 1}
+                onClick={handleNext}
+                variant="contained"
+              >
+                Next
+              </Button>
+            </Box>
+          </Box>
+
+          <Box
+            sx={{
+              flex: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            component={motion.div}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            key={steps[activeStep].image}
+          >
+            <img
+              src={steps[activeStep].image}
+              alt={`Step ${activeStep + 1}`}
+              style={{
+                width: "100%",
+                maxWidth: "500px",
+                height: "300px",
+                borderRadius: "8px",
+                objectFit: "cover",
+              }}
+            />
+          </Box>
         </Box>
-        </>
-    );
+      </Box>
+    </>
+  );
 };
 
-export default VerticalStepperWithImage;
+export default VerticalStepperLayout;
+

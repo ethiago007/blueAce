@@ -2,6 +2,10 @@ body {
   background-color: #030303;
 }
 
+.hope {
+  background-color: #FFFFFF;
+}
+
 span.inter {
   position: relative;
   display: inline-block;
@@ -23,6 +27,16 @@ span.inter::before {
 .robot {
  width: 400px;
  height: 500px;
+}
+
+.lite {
+  font-size: 16px;
+  color: #777777;
+  font-weight: lighter;
+}
+
+.strike {
+  text-decoration: line-through;
 }
 
 @media (max-width: 400px) {
