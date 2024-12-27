@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, Typography, Button } from "@mui/material";
+import React, { useRef, useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import "@fontsource/inter";
 
@@ -29,160 +29,114 @@ const steps = [
 
 const VerticalStepperLayout = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const stepRefs = useRef([]);
 
-  const handleNext = () => {
-    setActiveStep((prev) => Math.min(prev + 1, steps.length - 1));
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let maxVisibleRatio = 0;
+        let newActiveStep = activeStep;
 
-  const handleBack = () => {
-    setActiveStep((prev) => Math.max(prev - 1, 0));
-  };
+        entries.forEach((entry) => {
+          const index = parseInt(entry.target.dataset.index, 10);
+
+          if (entry.intersectionRatio > maxVisibleRatio) {
+            maxVisibleRatio = entry.intersectionRatio;
+            newActiveStep = index;
+          }
+        });
+
+        if (newActiveStep !== activeStep) {
+          setActiveStep(newActiveStep);
+        }
+      },
+      { threshold: Array.from({ length: 11 }, (_, i) => i * 0.1) } // Gradual thresholds for smooth detection
+    );
+
+    stepRefs.current.forEach((ref) => ref && observer.observe(ref));
+
+    return () => {
+      stepRefs.current.forEach((ref) => ref && observer.unobserve(ref));
+    };
+  }, [activeStep]);
 
   return (
-    <>
-      <Box
+    <Box
+      sx={{
+        fontFamily: "Inter, sans-serif",
+        backgroundColor: "#FFFFFF",
+        padding: { xs: "40px", md: "100px", sm: "100px" },
+        mt: 6,
+      }}
+    >
+      <Typography
         sx={{
-          backgroundColor: "#FFFFFF",
-          fontFamily: "Inter, sans-serif",
-          padding: { md: "100px", xs: "none", sm: "100px" },
+          display: "flex",
+          justifyContent: "center",
+          fontSize: "20px",
+          mb: 5,
         }}
       >
-        <br /><br />
-        <Typography
-          sx={{ display: "flex", justifyContent: "center", fontSize: "20px" }}
-        >
-          How it works
-        </Typography>
-        <br />
+        How it works
+      </Typography>
+      {steps.map((step, index) => (
         <Box
+          key={index}
+          ref={(el) => (stepRefs.current[index] = el)}
+          data-index={index}
           sx={{
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
-            alignItems: { xs: "flex-start", md: "center" },
-            gap: 4,
-            p: 4,
-            backgroundColor: "#FFFFFF",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "50px 0",
+            gap: "20px",
           }}
+          component={motion.div}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{
+            opacity: activeStep === index ? 1 : 0.5,
+            y: activeStep === index ? 0 : 20,
+          }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <Box sx={{ flex: 1 }}>
-            {steps.map((step, index) => (
-              <Box
-                key={index}
-                sx={{ display: "flex", gap: {md: 8, xs: 6} }}
-                component={motion.div}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  
-                 
-                  <Box
-                    sx={{
-                      width: { md: "90px", xs: "50px" },
-                      height: { md: "90px", xs: "50px" },
-                      borderRadius: "50%",
-                      backgroundColor:
-                        index === activeStep || index < activeStep
-                          ? "#212AE3"
-                          : "#888EFF",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      color: "#fff",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    
-                    {step.number}
-                  </Box>
-                  {index < steps.length - 1 && (
-                    <Box
-                      sx={{
-                        width: "2px",
-                        height: { md: "80px", xs: "120px" },
-                        backgroundColor:
-                          index < activeStep ? "#212AE3" : "#888EFF",
-                        marginTop: "4px",
-                      }}
-                    ></Box>
-                  )}
-                </Box>
-
-                <Box >
-                
-                  <Typography
-                    sx={{
-                      color: "#212AE3",
-                      fontSize: {md: "17px", xs: "15px"},
-                      fontWeight: 500,
-                    }}
-                  >
-                    {step.title}
-                  </Typography>
-                  
-                  <Typography variant="body2">{step.description}</Typography>
-                </Box>
-                
-              </Box>
-            ))}
-
-            <Box sx={{ mt: 3 }}>
-              <Button
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                variant="contained"
-                sx={{ marginRight: 1 }}
-              >
-                Back
-              </Button>
-              &nbsp;
-              <Button
-                disabled={activeStep === steps.length - 1}
-                onClick={handleNext}
-                variant="contained"
-              >
-                Next
-              </Button>
-            </Box>
+          {/* Text Content */}
+          <Box sx={{ flex: 1, textAlign: "center" }}>
+            <Typography
+              sx={{
+                fontSize: "20px",
+                fontWeight: "500",
+                color: "#212AE3",
+                marginBottom: "16px",
+              }}
+            >
+              {step.title}
+            </Typography>
+            <Typography
+              sx={{ fontSize: "16px", color: "#555", fontWeight: "400" }}
+            >
+              {step.description}
+            </Typography>
           </Box>
 
-          <Box
-            sx={{
-              flex: 1,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            component={motion.div}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
-            key={steps[activeStep].image}
-          >
+          {/* Image */}
+          <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
             <img
-              src={steps[activeStep].image}
-              alt={`Step ${activeStep + 1}`}
+              src={step.image}
+              alt={`Step ${index + 1}`}
               style={{
                 width: "100%",
-                maxWidth: "500px",
-                height: "300px",
+                maxWidth: "400px",
+                height: "auto",
                 borderRadius: "8px",
                 objectFit: "cover",
               }}
             />
           </Box>
         </Box>
-      </Box>
-    </>
+      ))}
+    </Box>
   );
 };
 
 export default VerticalStepperLayout;
-
