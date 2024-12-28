@@ -39,10 +39,26 @@ span.inter::before {
   text-decoration: line-through;
 }
 
+.responsive-div {
+  width: 250px;
+}
+
 @media (max-width: 400px) {
   .robot {
     width: 270px;
     height: 300px;
+  }
+}
+
+@media (min-width: 600px) {
+  .responsive-div {
+    width: 350px; 
+  }
+}
+
+@media (min-width: 960px) {
+  .responsive-div {
+    width: 350px; 
   }
 }
 

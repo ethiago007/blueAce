@@ -37,15 +37,16 @@ const PriceCard = () => {
       <Stack
         direction={{ md: "row", sm: "column", xs: "column" }}
         spacing={{ md: 16, sm: 8, xs: 5 }}
-        sx={{display: "flex", justifyContent: "center"}}
+        sx={{ display: "flex", justifyContent: "center" }}
       >
-        <Box>
+        <Box sx={{ display: "block", justifyContent: "center" }}>
           <Card
             sx={{
               width: { md: 350, sm: 350, xs: 250 },
               borderRadius: "24px",
               position: "relative",
               top: "45px",
+              justifySelf: "center",
             }}
           >
             <CardContent>
@@ -93,13 +94,15 @@ const PriceCard = () => {
           </Card>
           <div
             style={{
-              width: { md: 350, sm: 350, xs: 250 },
               borderRadius: "24px",
               backgroundColor: "#303030",
               display: "flex",
               justifyContent: "center",
+              alignItems: "center",
               height: "85px",
+              justifySelf: "center",
             }}
+            className="responsive-div"
           >
             <Typography
               sx={{
@@ -126,13 +129,14 @@ const PriceCard = () => {
             </Typography>
           </div>
         </Box>
-        <Box>
+        <Box sx={{ display: "block", justifyContent: "center" }}>
           <Card
             sx={{
               width: { md: 350, sm: 350, xs: 250 },
               borderRadius: "24px",
               position: "relative",
               top: "45px",
+              justifySelf: "center",
             }}
           >
             <CardContent>
@@ -175,13 +179,14 @@ const PriceCard = () => {
           </Card>
           <div
             style={{
-              width: { md: 350, sm: 350, xs: 250 },
               borderRadius: "24px",
               backgroundColor: "#212AE3",
               display: "flex",
               justifyContent: "center",
               height: "85px",
+              justifySelf: "center",
             }}
+            className="responsive-div"
           >
             <Typography
               sx={{
