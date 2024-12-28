@@ -43,6 +43,7 @@ span.inter::before {
   width: 250px;
 }
 
+
 @media (max-width: 400px) {
   .robot {
     width: 270px;
@@ -54,11 +55,13 @@ span.inter::before {
   .responsive-div {
     width: 350px; 
   }
+
 }
 
 @media (min-width: 960px) {
   .responsive-div {
     width: 350px; 
   }
+  
 }
 

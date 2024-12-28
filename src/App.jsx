@@ -6,6 +6,8 @@ import CardFeatures from './component/features';
 import VerticalStepperLayout from './component/how';
 import PriceCard from './component/pricing';
 import { Box } from '@mui/material';
+import Reviews from './component/reviews';
+import Reviews2 from './component/reviewmain';
 import './App.css'
 import '@fontsource/inter';
 
@@ -25,7 +27,8 @@ function App() {
       <VerticalStepperLayout />
       </Box>
       <PriceCard />
-      
+      <Reviews />
+      <Reviews2 />
      
     </>
   )
