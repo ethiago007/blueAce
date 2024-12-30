@@ -28,7 +28,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <div className="navbar-links">
+        <div className="navbar-links" >
           {pages.map((page) => (
             <a key={page} href={`#${page.toLowerCase().replace(/\s/g, "-")}`}>
               {page}

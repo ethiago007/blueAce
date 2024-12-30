@@ -39,10 +39,11 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  color: #030303;
 }
 
 .navbar-links a {
-  color: white;
+  color: #030303;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 300;
@@ -129,6 +130,15 @@ body {
 
 .navbar-close-button:hover {
   transform: scale(1);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Responsive Adjustments */
