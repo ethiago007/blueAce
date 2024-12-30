@@ -17,6 +17,7 @@
     "@mui/material": "^6.1.7",
     "cloudinary-video-player": "^2.1.1",
     "framer-motion": "^11.14.1",
+    "ldrs": "^1.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-youtube": "^10.1.0"

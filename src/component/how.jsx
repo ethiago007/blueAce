@@ -74,7 +74,6 @@ const VerticalStepperLayout = () => {
           display: "flex",
           justifyContent: "center",
           fontSize: "20px",
-          mb: 5,
         }}
       >
         How it works

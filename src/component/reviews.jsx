@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 
 function Reviews() {
   return (
@@ -10,22 +11,28 @@ function Reviews() {
           justifyContent: "center",
           fontFamily: "Inter, sans-serif",
           color: "#FAFAFA",
-          mb: 5
+          mb: 5,
         }}
       >
         <br />
         <br />
         <br />
-        <Typography
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            fontSize: "20px",
-            color: "#FAFAFA",
-          }}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
         >
-          Take our users word for it
-        </Typography>
+          <Typography
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              fontSize: "20px",
+              color: "#FAFAFA",
+            }}
+          >
+            Take our users word for it
+          </Typography>
+        </motion.div>
       </Box>
     </>
   );

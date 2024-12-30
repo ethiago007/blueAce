@@ -33,11 +33,10 @@ const PriceCard = () => {
       >
         Pricing Plans
       </Typography>
-      <br />
       <Stack
         direction={{ md: "row", sm: "column", xs: "column" }}
         spacing={{ md: 16, sm: 8, xs: 5 }}
-        sx={{ display: "flex", justifyContent: "center"}}
+        sx={{ display: "flex", justifyContent: "center" }}
       >
         <Box sx={{ display: "block", justifyContent: "center" }}>
           <Card
@@ -218,7 +217,6 @@ const PriceCard = () => {
       <br />
       <br />
       <br />
-      
     </Box>
   );
 };
