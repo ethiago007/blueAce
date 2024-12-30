@@ -100,7 +100,7 @@ const VerticalStepperLayout = () => {
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           {/* Text Content */}
-          <Box sx={{ flex: 1, textAlign: "center" }}>
+          <Box sx={{ flex: 1, textAlign: "left" }}>
             <Typography
               sx={{
                 fontSize: "20px",

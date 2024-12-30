@@ -1,5 +1,153 @@
 body {
   background-color: #030303;
+  font-family: "Inter", sans-serif;
+}
+
+
+.navbar {
+  background-color: #030303;
+  color: white;
+  padding: 1rem;
+  position: relative;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo svg {
+  width: 50px; /* Default size for desktop */
+  height: auto;
+}
+
+.navbar-logo span {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-left: 0.5rem;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+  color: #212ae3;
+}
+
+.navbar-demo-button {
+  background-color: #212ae3;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.navbar-demo-button:hover {
+  background-color: #3943f0;
+}
+
+/* Mobile Styles */
+.navbar-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+.navbar-mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 1000;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.navbar-mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.navbar-mobile-menu a {
+  font-size: 1.5rem;
+  color: black;
+  text-decoration: none;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.navbar-mobile-menu a:hover {
+  color: #212ae3;
+}
+
+.navbar-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: black;
+  cursor: pointer;
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.navbar-close-button:hover {
+  transform: scale(1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar-logo svg {
+    width: 35px; /* Smaller size for mobile */
+  }
+
+  .navbar-logo span {
+    font-size: 1.2rem; /* Adjust font size */
+  }
+
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-menu-toggle {
+    display: block;
+  }
 }
 
 .hope {
